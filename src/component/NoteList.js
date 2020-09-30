@@ -3,6 +3,8 @@ import Note from './Note'
 
 import './styles/NoteListStyle.css'
 
+import {getNotes} from '../services/Api'
+
 class NoteList extends React.Component {
   constructor () {
     super()
@@ -12,10 +14,10 @@ class NoteList extends React.Component {
   }
 
   componentDidMount () {
-    window.fetch('https://api.myidea.fr/v1/notes')
-      .then(response => response.json())
-      .then(result => this.setState({ notes: result }))
-      .catch(error => window.alert(error))
+    
+    getNotes()
+    .then(data => this.setState({notes: data}))
+  
   }
 
   render () {
